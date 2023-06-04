@@ -1,0 +1,9 @@
+[submodule "control-tower-inventory-service"]
+	path = control-tower-inventory-service
+	url = https://github.com/ajisrael/control-tower-inventory-service.git
+[submodule "control-tower-api-gateway"]
+	path = control-tower-api-gateway
+	url = https://github.com/ajisrael/control-tower-api-gateway.git
+[submodule "control-tower-discovery-server"]
+	path = control-tower-discovery-server
+	url = https://github.com/ajisrael/control-tower-discovery-server.git
