@@ -13,3 +13,15 @@
 [submodule "user-service"]
 	path = user-service
 	url = https://github.com/ajisrael/control-tower-user-service.git
+[submodule "payment-service"]
+	path = payment-service
+	url = https://github.com/ajisrael/control-tower-payment-service.git
+[submodule "address-service"]
+	path = address-service
+	url = https://github.com/ajisrael/control-tower-address-service.git
+[submodule "orders-service"]
+	path = orders-service
+	url = https://github.com/ajisrael/control-tower-orders-service.git
+[submodule "core"]
+	path = core
+	url = https://github.com/ajisrael/control-tower-core.git
