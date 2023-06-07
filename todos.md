@@ -1,0 +1,52 @@
+Complete:
+- Remove Helper class from services
+- Move all commands to command package
+- Add validators to command classes not using javax
+- Make sure all h2 database tables are singular
+
+
+Todos:
+- Write delete commands for all aggregates and persist changes to projections
+- Clean up logging in command interceptor
+- Create command interceptor for each command
+- Standardize return types from command and query apis
+- Add subscription queries where sagas are used
+- Clean up / enhance logging in sagas
+- change quantity on product aggregate to stock
+- create customer service
+- update order service to have list of product ids on aggregate and remove price
+- on order projection get products with price and calculate total for order on request
+- replace user id with customer id on order projection
+- when order is created if product is in stock then claim an available inventory item in saga and update product availability
+- when order is created if product is not in stock need to figure out how external inventory process would flow
+- map out architecture with Structurizer dsl
+- create external inventory service
+- create delivery service
+- look up way to build and run all services from single command like monolith
+- add sonarqube to project
+- integrate kafka for failed transactions notifications
+- after configuring stock check corresponding payment method exists
+- if payment method exists and is not expired then update order status to placed
+- if payment method does not exist, create compensating transactions on order to remove it 
+  (or setup notification and deadline for adding payment method from user)
+- figure out payment service for tokenizing methods instead of storing cc data
+- need payment service for processing payment transactions as well (not done until delivery though)
+- need ability for processing payments through financing
+- add expected delivery calculation to inventory services and return as field on order 
+- update payment method expiration check to be valid until expected delivery date
+- in customer service model have field to user id for assigned sales rep or manager for customer account
+- in user service have projection that handles customer service assignment events to provide list of assigned customers
+- lookup how to control access and authentication in a user service
+- setup configuration service for inventory locations and bins as well as manufacturers for products
+- add product image url to product aggregate and projection and figure out how to manage images of products
+- add cron job to query upcoming deliveries based on orders and generate a pick list for each delivery
+- add deadline manager for pick list to be completed day before deliver and raise alert if incomplete
+- add route calculation to delivery service to efficiently split up upcoming deliveries into routes to be handled in single work day
+- add delivery check list from order and inventory service to verify all products are present on truck and are loaded in correct order
+- create transfer service to schedule transfers and integrate with delivery service
+- add deadline manager to order service on expected delivery date and raise alert if order status doesn't reach complete by that date
+- update order status to complete after delivery is made
+- add ability for customer to purchase product off the floor within the system
+- add address validation (geo locator) to address service
+- add request id to all rest endpoints and implement logging on each request
+- integrate email notifications from kafka consumer
