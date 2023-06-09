@@ -6,6 +6,7 @@ Complete:
 - Write remove commands for all aggregates (except order) and persist changes to projections
 - Write cancel order command and persist changes to projections
 - Add queries for single resource of each service
+- change quantity on product aggregate to stock
 
 Todos:
 - Update query handlers to use optionals where appropriate
@@ -23,7 +24,7 @@ Todos:
 - Standardize return types from command and query apis
 - Add subscription queries where sagas are used
 - Clean up / enhance logging in sagas
-- change quantity on product aggregate to stock
+- implement pick list and inventory item history
 - update order service to have list of product ids on aggregate and remove price
 - on order projection get products with price and calculate total for order on request
 - replace user id with customer id on order projection
