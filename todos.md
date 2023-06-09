@@ -3,17 +3,27 @@ Complete:
 - Move all commands to command package
 - Add validators to command classes not using javax
 - Make sure all h2 database tables are singular
-
+- Write remove commands for all aggregates (except order) and persist changes to projections
+- Write cancel order command and persist changes to projections
+- Add queries for single resource of each service
 
 Todos:
-- Write delete commands for all aggregates and persist changes to projections
+- Update query handlers to use optionals where appropriate
+- Create abstract command class in core library that requires implementation of validate() method
+- Add saga to users service to only remove a user that is a customer that doesn't have an active order
+- Add saga to payment and address services to confirm user exists when creating resource
+- Create query for payment method and address by user id
+- Continue user saga for customer to automatically remove associated address and payment data after confirming no active orders
+- Standardize exception messages with constants
+- Make sure all Event handlers in Aggregates are event sourcing handlers
+- Fix interceptor registration method name in application src file
+- use throwErrorIfEntityDoesNotExist() when handling events on query side of app that get entities from repo that are not optional
 - Clean up logging in command interceptor
 - Create command interceptor for each command
 - Standardize return types from command and query apis
 - Add subscription queries where sagas are used
 - Clean up / enhance logging in sagas
 - change quantity on product aggregate to stock
-- create customer service
 - update order service to have list of product ids on aggregate and remove price
 - on order projection get products with price and calculate total for order on request
 - replace user id with customer id on order projection
