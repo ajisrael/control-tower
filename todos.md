@@ -7,32 +7,39 @@ Complete:
 - Write cancel order command and persist changes to projections
 - Add queries for single resource of each service
 - change quantity on product aggregate to stock
+- Update query handlers to use optionals where appropriate
+- Standardize exception messages with constants
+- Clean up logging in command interceptors
+- Fix interceptor registration method name in application src file
+- Make sure all Event handlers in Aggregates are event sourcing handlers
+- use throwErrorIfEntityDoesNotExist() when handling events on query side of app that get entities from repo that are not optional
 
 Todos:
-- Update query handlers to use optionals where appropriate
-- Create abstract command class in core library that requires implementation of validate() method
-- Add saga to users service to only remove a user that is a customer that doesn't have an active order
+- Create command interceptor for each command
+- Use command interceptor for issuing exception messages before command is aggregated
+- Write unit and integration tests
+******* Refactor Above : Feature Below *******
+- implement pick list and inventory item history
 - Add saga to payment and address services to confirm user exists when creating resource
 - Create query for payment method and address by user id
-- Continue user saga for customer to automatically remove associated address and payment data after confirming no active orders
-- Standardize exception messages with constants
-- Make sure all Event handlers in Aggregates are event sourcing handlers
-- Fix interceptor registration method name in application src file
-- use throwErrorIfEntityDoesNotExist() when handling events on query side of app that get entities from repo that are not optional
-- Clean up logging in command interceptor
-- Create command interceptor for each command
+- Add saga to users service to only remove a user that doesn't have an active order
+- Continue user saga to automatically remove associated address and payment data after confirming no active orders on user removal
 - Standardize return types from command and query apis
 - Add subscription queries where sagas are used
 - Clean up / enhance logging in sagas
-- implement pick list and inventory item history
 - update order service to have list of product ids on aggregate and remove price
 - on order projection get products with price and calculate total for order on request
-- replace user id with customer id on order projection
 - when order is created if product is in stock then claim an available inventory item in saga and update product availability
 - when order is created if product is not in stock need to figure out how external inventory process would flow
 - map out architecture with Structurizer dsl
 - create external inventory service
 - create delivery service
+- create sales service
+- create admin service
+- create notification methods in core library
+- create authentication methods in core library
+- create configuration service
+- Remove user role from user service
 - look up way to build and run all services from single command like monolith
 - add sonarqube to project
 - integrate kafka for failed transactions notifications
@@ -45,13 +52,13 @@ Todos:
 - need ability for processing payments through financing
 - add expected delivery calculation to inventory services and return as field on order 
 - update payment method expiration check to be valid until expected delivery date
-- in customer service model have field to user id for assigned sales rep or manager for customer account
-- in user service have projection that handles customer service assignment events to provide list of assigned customers
+- in user service model have field to sales id for assigned sales rep or manager for account
+- in user service have projection that handles customer assignment events to provide list of assigned customers
 - lookup how to control access and authentication in a user service
 - setup configuration service for inventory locations and bins as well as manufacturers for products
 - add product image url to product aggregate and projection and figure out how to manage images of products
 - add cron job to query upcoming deliveries based on orders and generate a pick list for each delivery
-- add deadline manager for pick list to be completed day before deliver and raise alert if incomplete
+- add deadline manager for pick list to be completed day before delivery and raise alert if incomplete
 - add route calculation to delivery service to efficiently split up upcoming deliveries into routes to be handled in single work day
 - add delivery check list from order and inventory service to verify all products are present on truck and are loaded in correct order
 - create transfer service to schedule transfers and integrate with delivery service
