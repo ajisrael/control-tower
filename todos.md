@@ -13,10 +13,10 @@ Complete:
 - Fix interceptor registration method name in application src file
 - Make sure all Event handlers in Aggregates are event sourcing handlers
 - use throwErrorIfEntityDoesNotExist() when handling events on query side of app that get entities from repo that are not optional
+- Create command interceptor for each command
+- Use command interceptor for issuing exception messages and validation before command is handled
 
 Todos:
-- Create command interceptor for each command
-- Use command interceptor for issuing exception messages before command is aggregated
 - Write unit and integration tests
 ******* Refactor Above : Feature Below *******
 - implement pick list and inventory item history
