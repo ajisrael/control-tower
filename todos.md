@@ -15,12 +15,25 @@ Complete:
 - use throwErrorIfEntityDoesNotExist() when handling events on query side of app that get entities from repo that are not optional
 - Create command interceptor for each command
 - Use command interceptor for issuing exception messages and validation before command is handled
+- implement pick list
+  - add logic to pick list to only allow completion when all skus in list are picked
+  - change pick list removal to automatically remove skus
+  - clean up logging and error handling for pick list
+  - go through and refactor repeated and complex code
+- implement inventory item history
+- Change inventoryitemassignedtopicklist classes to pickitems
+- add inventory item location to pick list query model
+- Refactor rest models on query side to be query models
+- Add check in create address command interceptor to confirm user exists
+- Add check in create payment method command interceptor to confirm user exists
 
 Todos:
 - Write unit and integration tests
+- Replace all * imports with explicit import statements
+- Check command handlers to reference correct entity in log and error statements
+- Add pagination to all query handlers
+- Make an abstract class for commands and converters
 ******* Refactor Above : Feature Below *******
-- implement pick list and inventory item history
-- Add saga to payment and address services to confirm user exists when creating resource
 - Create query for payment method and address by user id
 - Add saga to users service to only remove a user that doesn't have an active order
 - Continue user saga to automatically remove associated address and payment data after confirming no active orders on user removal
