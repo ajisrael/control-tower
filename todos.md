@@ -26,6 +26,9 @@ Complete:
 - Refactor rest models on query side to be query models
 - Add check in create address command interceptor to confirm user exists
 - Add check in create payment method command interceptor to confirm user exists
+- Create query for payment method and address by user id
+- Use remove user command interceptor to automatically remove associated address and payment data
+- update order service to have list of product ids on aggregate and remove price
 
 Todos:
 - Write unit and integration tests
@@ -34,13 +37,14 @@ Todos:
 - Add pagination to all query handlers
 - Make an abstract class for commands and converters
 ******* Refactor Above : Feature Below *******
-- Create query for payment method and address by user id
-- Add saga to users service to only remove a user that doesn't have an active order
-- Continue user saga to automatically remove associated address and payment data after confirming no active orders on user removal
+- Add to users service to only remove a user that doesn't have an active order through command interceptor
+- Add compensating transactions on errors for removing user addresses / payment methods from command interceptor of user service
+- Update order service to abstract line items to handle promotions, and shipment line items as well.
+- Update order service to calculate the total of the order based on line items (ignoring tax for now)
+- Update order service to calculate the toatl of the order including tax
 - Standardize return types from command and query apis
 - Add subscription queries where sagas are used
 - Clean up / enhance logging in sagas
-- update order service to have list of product ids on aggregate and remove price
 - on order projection get products with price and calculate total for order on request
 - when order is created if product is in stock then claim an available inventory item in saga and update product availability
 - when order is created if product is not in stock need to figure out how external inventory process would flow
