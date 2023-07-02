@@ -29,25 +29,30 @@ Complete:
 - Create query for payment method and address by user id
 - Use remove user command interceptor to automatically remove associated address and payment data
 - update order service to have list of product ids on aggregate and remove price
+- Update order service to handle promotions, and shipment line items as well.
+- Update order service to calculate the total of the order based on line items (ignoring tax for now)
+- Update order service to calculate the total of the order including tax
+- validate user, payment method, address, and product ids all exist when creating an order
+- Standardize return types from command and query apis
+- on order projection get products with price and calculate total for order on request
+- Add pagination to all query handlers
+- Check command handlers to reference correct entity in log and error statements
 
 Todos:
+- Expand exception handlers to log exception and what class is throwing the exception
 - Write unit and integration tests
 - Replace all * imports with explicit import statements
-- Check command handlers to reference correct entity in log and error statements
-- Add pagination to all query handlers
 - Make an abstract class for commands and converters
 ******* Refactor Above : Feature Below *******
 - Add to users service to only remove a user that doesn't have an active order through command interceptor
 - Add compensating transactions on errors for removing user addresses / payment methods from command interceptor of user service
-- Update order service to abstract line items to handle promotions, and shipment line items as well.
-- Update order service to calculate the total of the order based on line items (ignoring tax for now)
-- Update order service to calculate the toatl of the order including tax
-- Standardize return types from command and query apis
 - Add subscription queries where sagas are used
 - Clean up / enhance logging in sagas
-- on order projection get products with price and calculate total for order on request
 - when order is created if product is in stock then claim an available inventory item in saga and update product availability
 - when order is created if product is not in stock need to figure out how external inventory process would flow
+- update order projection to store external domain objects as orders are immutable
+- change user check in create address command interceptor to use query gateway and not web client service
+- change user check in create payment method command interceptor to use query gateway and not web client service
 - map out architecture with Structurizer dsl
 - create external inventory service
 - create delivery service
@@ -85,3 +90,4 @@ Todos:
 - add address validation (geo locator) to address service
 - add request id to all rest endpoints and implement logging on each request
 - integrate email notifications from kafka consumer
+- add redis cache to project to hold recent request/transaction ids for idempotency
